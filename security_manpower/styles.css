@@ -144,6 +144,11 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 1.1rem;
 }
 
+.btn-middle {
+    padding: 10px 25px;
+    font-size: 1.05rem;
+}
+
 .btn-full {
     width: 100%;
 }
@@ -242,7 +247,7 @@ h1, h2, h3, h4, h5, h6 {
     background-image: linear-gradient(rgba(10, 58, 107, 0.85), rgba(26, 32, 44, 0.9));
     background-size: cover;
     background-position: center;
-    padding: 80px 0 60px;
+    padding: 80px 0 30px; /* Reduced bottom padding */
     color: var(--white);
     text-align: center;
 }
@@ -300,42 +305,68 @@ h1, h2, h3, h4, h5, h6 {
    SECTIONS GENERAL
 ========================================= */
 section {
-    padding: 60px 0;
+    padding: 5px 0; /* Reduced general section padding */
 }
 
 /* =========================================
    STATS SECTION
 ========================================= */
 .stats-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
+    display: flex;
+    overflow-x: auto;
+    gap: 12px; /* Reduced gap */
+    padding: 10px 15px 20px; /* Added side padding for better scroll feel */
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+}
+
+.stats-grid::-webkit-scrollbar {
+    display: none;
 }
 
 .stat-card {
-    background: var(--white);
-    padding: 24px;
-    border-radius: 8px;
+    flex: 0 0 calc(28% - 4px); /* Show ~3.5 cards */
+    scroll-snap-align: start;
+    background: transparent;
+    padding: 5px;
+    border: none;
+    box-shadow: none;
     text-align: center;
-    box-shadow: var(--shadow-sm);
-    border: 1px solid var(--border-color);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.stat-card:last-child {
-    grid-column: 1 / -1; /* spans full width on mobile */
+.stat-icon {
+    font-size: 1.1rem;
+    color: #3182ce;
+    margin-bottom: 6px;
+    background: #ebf8ff;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
 }
 
 .stat-number {
-    font-size: 2rem;
+    font-size: 1.1rem;
     font-weight: 800;
-    color: var(--primary-blue);
-    margin-bottom: 8px;
+    color: var(--dark-grey);
+    margin-bottom: 2px;
+    line-height: 1;
 }
 
 .stat-text {
-    font-size: 0.9rem;
-    font-weight: 600;
+    font-size: 0.55rem;
+    font-weight: 700;
     color: var(--medium-grey);
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+    line-height: 1.1;
 }
 
 /* =========================================
@@ -736,8 +767,17 @@ section {
         justify-content: center;
     }
     
-    .stats-grid { grid-template-columns: repeat(5, 1fr); }
-    .stat-card:last-child { grid-column: auto; }
+    .stats-grid { 
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        overflow-x: visible;
+        gap: 20px; 
+        padding: 0;
+    }
+    .stat-card { flex: auto; }
+    .stat-icon { width: 55px; height: 55px; font-size: 1.6rem; margin-bottom: 15px; }
+    .stat-number { font-size: 2.2rem; margin-bottom: 8px; }
+    .stat-text { font-size: 0.9rem; letter-spacing: 0.05em; }
     
     .clients-flex {
         flex-direction: row;
