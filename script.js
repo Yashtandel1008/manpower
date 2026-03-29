@@ -40,15 +40,12 @@ document.addEventListener('DOMContentLoaded', () => {
             // Gather Data
             const formData = new FormData(form);
 
-            // Send yes/no for consent
-            const consent = document.getElementById("consent").checked;
-            formData.append("consent", consent ? "Yes" : "No");
-
             try {
-                // Submit using multipart/form-data via fetch
+                // Submit using multipart/form-data via fetch with no-cors to bypass Google Apps Script strict CORS policy
                 await fetch(WEBHOOK_URL, {
                     method: 'POST',
-                    body: formData
+                    body: formData,
+                    mode: 'no-cors'
                 });
 
                 // Show SweetAlert on success
