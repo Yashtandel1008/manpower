@@ -224,6 +224,6 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Add active class to new slide
             aboutSlides[aboutCurrentIndex].classList.add('active');
-        }, 3000); // Change every 5 seconds
+        }, 2000); // Change every 5 seconds
     }
 });
