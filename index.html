@@ -15,6 +15,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- SweetAlert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
     <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -610,17 +612,20 @@
                                 <textarea id="message" name="message" rows="3"
                                     placeholder="Additional requirements..."></textarea>
                             </div>
+                            <div class="form-group form-check" style="display: flex; gap: 10px; align-items: flex-start; margin-bottom: 20px;">
+                                <input type="checkbox" class="form-check-input" id="consent" required style="width: auto; margin-top: 5px;">
+                                <label class="form-check-label" for="consent" style="margin: 0; font-weight: normal; font-size: 0.95rem;">
+                                    I agree with the data terms and policies
+                                </label>
+                            </div>
                             <button type="submit" class="btn btn-primary btn-full submit-btn" id="submitBtn">
                                 <span>Submit Request</span>
                                 <div class="spinner d-none" id="formSpinner"></div>
                             </button>
-                            <div id="formSuccess" class="form-message success d-none mt-2">
-                                <i class="fa-solid fa-circle-check"></i> Thanks! We will contact you shortly.
-                            </div>
-                            <div id="formError" class="form-message error d-none mt-2">
-                                <i class="fa-solid fa-circle-exclamation"></i> Something went wrong. Please try again or
-                                call us.
-                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </section>
     </main>
 

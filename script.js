@@ -22,8 +22,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('dmRaoForm');
     const submitBtn = document.getElementById('submitBtn');
     const spinner = document.getElementById('formSpinner');
-    const formSuccess = document.getElementById('formSuccess');
-    const formError = document.getElementById('formError');
 
     // Replace this Webhook URL with the user's provided link
     const WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbx99-hSVTXJke3qZsgcRDcpDjzuLUOZsDSHI68-TzCgzNGSy2NXB5jRYjxlykPxsmyX-Q/exec';
@@ -34,42 +32,39 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // UI state: loading
             submitBtn.disabled = true;
-            submitBtn.querySelector('span').style.opacity = '0';
-            spinner.classList.remove('d-none');
-            formSuccess.classList.add('d-none');
-            formError.classList.add('d-none');
+            if (spinner) {
+                submitBtn.querySelector('span').style.opacity = '0';
+                spinner.classList.remove('d-none');
+            }
 
-            // GATHER DATA as form-data per user requirements
-            const formData = new FormData();
-            formData.append("name", document.getElementById('name').value);
-            formData.append("phone", document.getElementById('phone').value);
-            formData.append("location", document.getElementById('location').value);
-            formData.append("service", document.getElementById('serviceRequired').value);
-            formData.append("number", document.getElementById('numberRequired').value);
-            formData.append("industry", document.getElementById('industryType').value);
-            formData.append("message", document.getElementById('message').value);
+            // Gather Data
+            const formData = new FormData(form);
+
+            // Send yes/no for consent
+            const consent = document.getElementById("consent").checked;
+            formData.append("consent", consent ? "Yes" : "No");
 
             try {
                 // Submit using multipart/form-data via fetch
-                // Note: fetch automatically sets the correct Content-Type for FormData
-                const response = await fetch(WEBHOOK_URL, {
+                await fetch(WEBHOOK_URL, {
                     method: 'POST',
                     body: formData
                 });
 
-                // With fetch, if the redirect follows, we show success
-                formSuccess.classList.remove('d-none');
+                // Show SweetAlert on success
+                swal("Success", "Form submitted successfully!", "success");
                 form.reset();
             } catch (error) {
                 console.error('Submission error:', error);
-                // If it fails (even due to CORS), we try to show success if it's a redirect issue, 
-                // but if we caught an error, we show error. 
-                formError.classList.remove('d-none');
+                // Show SweetAlert on error
+                swal("Error", "Something went wrong. Please try again.", "error");
             } finally {
                 // Restore Button UI
                 submitBtn.disabled = false;
-                submitBtn.querySelector('span').style.opacity = '1';
-                spinner.classList.add('d-none');
+                if (spinner) {
+                    submitBtn.querySelector('span').style.opacity = '1';
+                    spinner.classList.add('d-none');
+                }
             }
         });
     }
