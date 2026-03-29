@@ -181,6 +181,31 @@ document.addEventListener('DOMContentLoaded', () => {
             resetAutoSlide();
         });
 
+        // Touch events for swiping on mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        track.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, {passive: true});
+
+        track.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }, {passive: true});
+
+        const handleSwipe = () => {
+            const threshold = 50; // minimum distance for swipe
+            if (touchEndX < touchStartX - threshold) {
+                nextSlide(); // left swipe
+                resetAutoSlide();
+            }
+            if (touchEndX > touchStartX + threshold) {
+                prevSlide(); // right swipe
+                resetAutoSlide();
+            }
+        };
+
         // Auto slide every 4 seconds
         let autoSlideInterval = setInterval(nextSlide, 4000);
 

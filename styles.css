@@ -1581,6 +1581,10 @@ section {
         display: none;
     }
 
+    .call-float {
+        display: none; /* Hidden on desktop, only visible in phone view */
+    }
+
     .pb-mobile {
         padding-bottom: 40px;
     }
