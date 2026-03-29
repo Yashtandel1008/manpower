@@ -307,12 +307,12 @@ h6 {
 
 .hero h1 {
     font-size: 2.2rem;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     line-height: 1.2;
 }
 
 .hero .subheadline {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     margin-bottom: 1.5rem;
     opacity: 0.9;
 }
@@ -392,12 +392,12 @@ section {
 }
 
 .stat-icon {
-    font-size: 1.1rem;
+    font-size: 2rem;
     color: #3182ce;
-    margin-bottom: 6px;
+    margin-bottom: 10px;
     background: #ebf8ff;
-    width: 36px;
-    height: 36px;
+    width: 64px;
+    height: 64px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -818,7 +818,16 @@ section {
     }
 
     .feature-text-box h4 {
-        font-size: 1.15rem;
+        font-size: 1.05rem; /* Decreased as requested */
+    }
+
+    .feature-text-box p {
+        font-size: 0.9rem; /* Decreased as requested */
+    }
+
+    .client-logo-img {
+        max-height: 60px; /* Reduced 20% from 75px */
+        max-width: 144px; /* Reduced 20% from 180px */
     }
 }
 

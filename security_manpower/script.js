@@ -32,40 +32,38 @@ document.addEventListener('DOMContentLoaded', () => {
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
 
-            // Hide previous messages
-            formSuccess.classList.add('d-none');
-            formError.classList.add('d-none');
-
             // UI state: loading
             submitBtn.disabled = true;
             submitBtn.querySelector('span').style.opacity = '0';
             spinner.classList.remove('d-none');
+            formSuccess.classList.add('d-none');
+            formError.classList.add('d-none');
 
-            // Gather Data
-            const formData = new FormData(form);
-            const dataObj = {};
-            formData.forEach((value, key) => {
-                dataObj[key] = value;
-            });
+            // GATHER DATA as form-data per user requirements
+            const formData = new FormData();
+            formData.append("name", document.getElementById('name').value);
+            formData.append("phone", document.getElementById('phone').value);
+            formData.append("location", document.getElementById('location').value);
+            formData.append("service", document.getElementById('serviceRequired').value);
+            formData.append("number", document.getElementById('numberRequired').value);
+            formData.append("industry", document.getElementById('industryType').value);
+            formData.append("message", document.getElementById('message').value);
 
             try {
-                // Post JSON to Google Script
+                // Submit using multipart/form-data via fetch
+                // Note: fetch automatically sets the correct Content-Type for FormData
                 const response = await fetch(WEBHOOK_URL, {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    // Send as stringified JSON
-                    body: JSON.stringify(dataObj)
+                    body: formData
                 });
 
-                // With no-cors, response is opaque so we assume success if no error thrown
-                // UI state: Success
+                // With fetch, if the redirect follows, we show success
                 formSuccess.classList.remove('d-none');
                 form.reset();
             } catch (error) {
-                console.error('Error submitting form:', error);
-                // UI state: Error
+                console.error('Submission error:', error);
+                // If it fails (even due to CORS), we try to show success if it's a redirect issue, 
+                // but if we caught an error, we show error. 
                 formError.classList.remove('d-none');
             } finally {
                 // Restore Button UI
