@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const spinner = document.getElementById('formSpinner');
 
     // Replace this Webhook URL with the user's provided link
-    const WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbx99-hSVTXJke3qZsgcRDcpDjzuLUOZsDSHI68-TzCgzNGSy2NXB5jRYjxlykPxsmyX-Q/exec';
+    const WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbziRaYm3sJ08Uj0DZIN-85rqJzFgq24QykOOv37W4EWv8PCTfFjNduHwdieOZsKYRyN/exec';
 
     if (form) {
         form.addEventListener('submit', async (e) => {
