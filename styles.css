@@ -896,10 +896,11 @@ section {
     }
 
     .testimonials-track {
-        display: block !important;
+        display: grid !important;
+        grid-template: 1fr / 1fr;
+        align-items: stretch;
         transform: none !important;
         position: relative;
-        height: 100%;
     }
 }
 
@@ -920,10 +921,10 @@ section {
 
 @media (max-width: 767px) {
     .testimonial-card {
-        position: absolute !important;
-        top: 0;
-        left: 0;
+        grid-area: 1 / 1;
+        position: relative !important;
         width: 100%;
+        height: 100%;
         opacity: 0;
         visibility: hidden;
     }
