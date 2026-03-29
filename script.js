@@ -41,10 +41,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const formData = new FormData(form);
 
             try {
-                // Submit using multipart/form-data via fetch with no-cors to bypass Google Apps Script strict CORS policy
+                // Formatting payload as x-www-form-urlencoded is required by Google Apps Script doPost parameters 
                 await fetch(WEBHOOK_URL, {
                     method: 'POST',
-                    body: formData,
+                    body: new URLSearchParams(formData),
                     mode: 'no-cors'
                 });
 
