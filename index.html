@@ -569,7 +569,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="phone">Phone *</label>
-                                    <input type="tel" id="phone" name="phone" required placeholder="Your mobile number" pattern="[0-9]*" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                                    <input type="tel" id="phone" name="phone" required placeholder="Your mobile number" pattern="[0-9]{10}" maxlength="10" onkeypress="return event.charCode >= 48 && event.charCode <= 57" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -588,7 +588,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="numberRequired">Number of Manpower/Security required</label>
-                                <input type="number" id="numberRequired" name="numberRequired" placeholder="E.g., 10" min="1">
+                                <input type="number" id="numberRequired" name="numberRequired" placeholder="E.g., 10" min="1" onkeypress="return event.charCode >= 48 && event.charCode <= 57" oninput="if(this.value < 1 && this.value !== '') this.value = 1;">
                             </div>
                             <div class="form-group">
                                 <label for="industryType">Industry Type *</label>
