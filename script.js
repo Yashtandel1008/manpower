@@ -41,20 +41,21 @@ document.addEventListener('DOMContentLoaded', () => {
             const formData = new FormData(form);
 
             try {
-                // Formatting payload as x-www-form-urlencoded is required by Google Apps Script doPost parameters 
+                // Sending to Google Apps Script using 'no-cors' mode.
+                // Note: In 'no-cors' mode, we cannot read the response body, 
+                // but the data will still be deposited into your Google Sheet.
                 await fetch(WEBHOOK_URL, {
                     method: 'POST',
                     body: new URLSearchParams(formData),
                     mode: 'no-cors'
                 });
 
-                // Show SweetAlert on success
-                swal("Success", "Form submitted successfully!", "success");
+                // Since we use 'no-cors', we assume success if the request completes without throwing a network error.
+                swal("Success", "Form submitted successfully! We will contact you soon.", "success");
                 form.reset();
             } catch (error) {
                 console.error('Submission error:', error);
-                // Show SweetAlert on error
-                swal("Error", "Something went wrong. Please try again.", "error");
+                swal("Error", "There was a problem sending your request. Please check your internet connection.", "error");
             } finally {
                 // Restore Button UI
                 submitBtn.disabled = false;
