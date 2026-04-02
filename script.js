@@ -244,4 +244,27 @@ document.addEventListener('DOMContentLoaded', () => {
             aboutSlides[aboutCurrentIndex].classList.add('active');
         }, 2000); // Change every 5 seconds
     }
+
+    // 5. Scroll Animations (Intersection Observer)
+    const animElements = document.querySelectorAll('.animate-up');
+    if ('IntersectionObserver' in window) {
+        const obsOptions = {
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target); // Trigger only once
+                }
+            });
+        }, obsOptions);
+
+        animElements.forEach(el => observer.observe(el));
+    } else {
+        // Fallback for older browsers
+        animElements.forEach(el => el.classList.add('visible'));
+    }
 });

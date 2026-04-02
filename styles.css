@@ -127,6 +127,22 @@ h6 {
 }
 
 /* Buttons */
+/* --- Animations --- */
+.animate-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.animate-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.delay-1 { transition-delay: 0.15s; }
+.delay-2 { transition-delay: 0.3s; }
+.delay-3 { transition-delay: 0.45s; }
+
 .btn {
     display: inline-flex;
     align-items: center;
@@ -1588,5 +1604,108 @@ section {
 
     .pb-mobile {
         padding-bottom: 40px;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+/* 22. LEADERSHIP SECTION
+/* -------------------------------------------------------------------------- */
+.leadership-section {
+    padding: 60px 0 40px;
+    background-color: #f8fafc;
+}
+
+.leadership-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.leadership-subtitle {
+    display: block;
+    color: var(--primary-blue);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+.leadership-title {
+    font-size: 3.5rem;
+    color: #1e293b;
+    font-weight: 800;
+}
+
+.director-card {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 40px 30px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.director-img-container {
+    width: 180px;
+    height: 180px;
+    margin: 0 auto 30px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 5px solid #ffffff;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.director-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.director-name {
+    font-size: 2.5rem;
+    color: #1e293b;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.director-title {
+    display: block;
+    color: var(--primary-blue);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    font-size: 1rem;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+}
+
+.director-bio {
+    max-width: 750px;
+    margin: 0 auto;
+}
+
+.director-bio p {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: #64748b;
+    margin-bottom: 25px;
+}
+
+@media (max-width: 768px) {
+    .leadership-title {
+        font-size: 2.5rem;
+    }
+
+    .director-card {
+        padding: 40px 25px;
+    }
+
+    .director-img-container {
+        width: 150px;
+        height: 150px;
+    }
+
+    .director-name {
+        font-size: 2rem;
     }
 }
